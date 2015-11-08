@@ -1,12 +1,16 @@
 {
   "name": "weather-pi",
   "version": "1.0.0",
+  "repository": "https://github.com/daviesgeek/weather-pi.git",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "server": "./node_modules/.bin/forever start index.js"
+  },
   "author": "Matthew Davies <matthew@daviesgeek.com>",
   "license": "MIT",
   "dependencies": {
-    "express": "^4.13.3"
+    "express": "^4.13.3",
+    "forever": "^0.15.1"
   }
 }
