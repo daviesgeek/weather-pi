@@ -1,7 +1,16 @@
 # weather-pi
 
+
+Download the ARMv6 node release, unzip it, and copy the binaries like so:
+
 ```shell
 cp node-*/ /opt/node
+```
+
+Add the binaries to the `$PATH`
+
+```shell
+PATH=/opt/node/bin:$PATH
 ```
 
 To setup port forwarding
