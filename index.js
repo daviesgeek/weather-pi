@@ -21,10 +21,6 @@ var Data = thinky.createModel('Data', {
   humidity: type.number(),
 })
 
-var stringify = function(doc) {
-  return JSON.stringify(doc, null, 2);
-}
-
 io.on('connection', function(socket){
   var data = Data.orderBy('date').run().then(function (data) {
     io.emit('data', data)
