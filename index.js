@@ -35,9 +35,10 @@ io.on('connection', function(socket){
       })
     })
   })
-  weather.get('forecast').then(function (forecastData) {
-    io.emit('forecast', forecastData)
-  })
+  io.emit('weather', require('./data.js'))
+  // weather.get(['forecast', 'conditions']).then(function (forecastData) {
+  //   io.emit('forecast', forecastData)
+  // })
 })
 
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));

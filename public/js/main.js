@@ -14,7 +14,7 @@ angular.module('app', ['btford.socket-io'])
       $scope.data = $scope.data.concat(newData)
     })
 
-    db.on('forecast', function(forecast) {
-      $scope.weather = forecast
+    db.on('weather', function(weather) {
+      $scope.weather = weather
     })
   })
