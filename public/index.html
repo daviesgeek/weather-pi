@@ -1,0 +1,22 @@
+<html ng-app="app">
+  <head>
+    <script type="text/javascript" src="https://cdn.socket.io/socket.io-1.3.7.js"></script>
+    <script type="text/javascript" src="/bower_components/angular/angular.min.js"></script>
+    <script type="text/javascript" src="/bower_components/angular-socket-io/socket.js"></script>
+    <script type="text/javascript" src="/js/main.js"></script>
+  </head>
+  <body ng-controller="MainCtrl">
+    <table>
+      <thead>
+        <th>Date:</th>
+        <th>Humidity:</th>
+        <th>Temperature:</th>
+      </thead>
+      <tr ng-repeat="d in data">
+        <td>{{d.date | date:'short' }}</td>
+        <td>{{d.humidity}}%</td>
+        <td>{{d.temp}}</td>
+      </tr>
+    </table>
+  </body>
+</html>
