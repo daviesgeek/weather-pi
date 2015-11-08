@@ -1,0 +1,12 @@
+{
+  "name": "weather-pi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "author": "Matthew Davies <matthew@daviesgeek.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}
