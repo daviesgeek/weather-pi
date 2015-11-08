@@ -1,0 +1,26 @@
+html(ng-app='app')
+  head
+    script(type='text/javascript', src='/bower_components/socket.io-client/socket.io.js')
+    script(type='text/javascript', src='/bower_components/jquery/dist/jquery.js')
+    script(type='text/javascript', src='/bower_components/angular/angular.min.js')
+    script(type='text/javascript', src='/bower_components/angular-socket-io/socket.js')
+    script(type='text/javascript', src='/bower_components/foundation/js/foundation.js')
+    script(type='text/javascript', src='/js/main.js')
+    link(rel='stylesheet', type='text/css', href='/bower_components/foundation/css/normalize.css')
+    link(rel='stylesheet', type='text/css', href='/bower_components/foundation/css/foundation.css')
+  body(ng-controller='MainCtrl')
+    table
+      tr(ng-repeat='day in weather.forecast.txt_forecast.forecastday')
+        td
+          img(ng-src='{{day.icon_url}}', alt='')
+        td {{day.title}}
+        td {{day.fcttext}}
+    table
+      thead
+        th Date:
+        th Humidity:
+        th Temperature:
+      tr(ng-repeat='d in data')
+        td {{d.date | date:'short' }}
+        td {{d.humidity}}%
+        td {{d.temp}}

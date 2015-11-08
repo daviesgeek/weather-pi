@@ -11,6 +11,9 @@ var config = require('./.config.js'),
     Wunderground = require('./models/Wunderground'),
     weather = new Wunderground(config);
 
+app.set('view engine', 'jade');
+
+
 var Data = thinky.createModel('Data', {
   id: type.string(),
   date: type.date(),
@@ -38,10 +41,11 @@ io.on('connection', function(socket){
 })
 
 app.use('/bower_components',  express.static(__dirname + '/bower_components'));
-app.use(express.static(__dirname + '/public'));
+app.set('views', 'public')
+app.use(express.static(__dirname + '/public'))
 
 app.get('/', function(req, res) {
-  res.render('./public/index.html')
+  res.render('index')
 })
 
 app.get('/new', function(req, res) {
