@@ -7,6 +7,13 @@
   </head>
   <body ng-controller="MainCtrl">
     <table>
+      <tr ng-repeat="day in weather.forecast.txt_forecast.forecastday">
+        <td><img ng-src="{{day.icon_url}}" alt="" /></td>
+        <td>{{day.title}}</td>
+        <td>{{day.fcttext}}</td>
+      </tr>
+    </table>
+    <table>
       <thead>
         <th>Date:</th>
         <th>Humidity:</th>

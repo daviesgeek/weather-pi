@@ -1,10 +1,15 @@
-var express = require('express')
+"use strict";
+
+var config = require('./.config.js'),
+    express = require('express'),
     app = express(),
     serverPort = 3000,
-    thinky = require('thinky')({host: 'rethinkdb.local', port: '49186', db: 'database'})
+    thinky = require('thinky')({host: 'rethinkdb.local', port: '49186', db: 'database'}),
     type = thinky.type,
     http = require('http').Server(app),
-    io = require('socket.io')(http);
+    io = require('socket.io')(http),
+    Wunderground = require('./models/Wunderground'),
+    weather = new Wunderground(config);
 
 var Data = thinky.createModel('Data', {
   id: type.string(),
@@ -26,6 +31,9 @@ io.on('connection', function(socket){
         io.emit('newData', doc)
       })
     })
+  })
+  weather.get('forecast').then(function (forecastData) {
+    io.emit('forecast', forecastData)
   })
 })
 

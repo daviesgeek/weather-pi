@@ -3,11 +3,18 @@ angular.module('app', ['btford.socket-io'])
     return socketFactory()
   })
   .controller('MainCtrl', function($scope, db) {
-    db.emit('connection', 'test')
+
+    db.emit('connection')
+
     db.on('data', function (data) {
       $scope.data = data
     })
+
     db.on('newData', function (newData) {
       $scope.data = $scope.data.concat(newData)
+    })
+
+    db.on('forecast', function(forecast) {
+      $scope.weather = forecast
     })
   })
