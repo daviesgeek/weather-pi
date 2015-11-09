@@ -4,23 +4,86 @@ html(ng-app='app')
     script(type='text/javascript', src='/bower_components/jquery/dist/jquery.js')
     script(type='text/javascript', src='/bower_components/angular/angular.min.js')
     script(type='text/javascript', src='/bower_components/angular-socket-io/socket.js')
-    script(type='text/javascript', src='/bower_components/foundation/js/foundation.js')
     script(type='text/javascript', src='/js/main.js')
     link(rel='stylesheet', type='text/css', href='/bower_components/foundation/css/normalize.css')
-    link(rel='stylesheet', type='text/css', href='/bower_components/foundation/css/foundation.css')
-  body(ng-controller='MainCtrl')
-    table
+    link(rel='stylesheet', type='text/css', href='https://cdnjs.cloudflare.com/ajax/libs/unsemantic/1.0.2/unsemantic-grid-responsive.css')
+    link(rel='stylesheet', type='text/css', href='/css/main.css')
+    title Weather
+  body.grid-container(ng-controller='MainCtrl')
+
+    h4.grid-100.prefix-30
+      img(ng-src="{{ weather.current_observation.icon_url }}", alt="")
+      | {{ weather.current_observation.weather }}
+    .grid-20.prefix-30
+      .small-12
+        h2 {{ weather.current_observation.temp_f }}
+          sup &deg; F
+        h5 {{ weather.current_observation.relative_humidity }} humidity
+        h6.subheader
+          em Feels like {{ weather.current_observation.feelslike_f }}
+            sup &deg; F
+        h6.subheader {{ weather.current_observation.wind_string }} wind from {{ weather.current_observation.wind_dir }} ({{ weather.current_observation.wind_mph }} mph)
+    .grid-20
+      table.small-12
+        tr
+          td Pressure:
+          td
+            b {{ weather.current_observation.pressure_in }}
+            |  in
+        tr
+          td Visibility:
+          td
+            b {{ weather.current_observation.visibility_mi }}
+            |  miles
+        tr
+          td Precipitation:
+          td {{ weather.current_observation.precip_today_string }}
+
+      h5
+        small
+          i.small-12 Last updated at 5:13 today
+    //- ul.pricing-table.small-3
+      li.bullet-item Weather:
+
+      li.bullet-item Temperature: {{ weather.current_observation.temp_f }}
+
+      li.bullet-item Feels like: {{ weather.current_observation.feelslike_f }}
+
+
+      li.bullet-item Humidity: {{ weather.current_observation.relative_humidity }}
+
+
+      li.bullet-item Wind: {{ weather.current_observation.wind_string }}
+
+      li.bullet-item Wind direction: {{ weather.current_observation.wind_dir }}
+
+      li.bullet-item Wind degrees: {{ weather.current_observation.wind_degrees }}
+
+      li.bullet-item Wind speed: {{ weather.current_observation.wind_mph }}
+
+
+      li.bullet-item Pressure: {{ weather.current_observation.pressure_in }}
+
+      li.bullet-item Visibility: {{ weather.current_observation.visibility_mi }}
+
+
+      li.bullet-item Precipitation (1 hour): {{ weather.current_observation.precip_1hr_string }}
+
+      li.bullet-item Precipitation (1 hour inches): {{ weather.current_observation.precip_1hr_in }}
+
+
+      li.bullet-item Precipitaion today: {{ weather.current_observation.precip_today_string }}
+
+
+      li.bullet-item {{ weather.current_observation.precip_today_in }}
+
+
+      li.bullet-item {{ weather.current_observation.icon }}
+
+      li.bullet-item {{ weather.current_observation.icon_url }}
+    //- table
       tr(ng-repeat='day in weather.forecast.txt_forecast.forecastday')
         td
           img(ng-src='{{day.icon_url}}', alt='')
         td {{day.title}}
         td {{day.fcttext}}
-    table
-      thead
-        th Date:
-        th Humidity:
-        th Temperature:
-      tr(ng-repeat='d in data')
-        td {{d.date | date:'short' }}
-        td {{d.humidity}}%
-        td {{d.temp}}
